@@ -1,17 +1,14 @@
 const { Router } = require("express")
 const UsersController = require("../controllers/UsersController")
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated")
 
 const usersRoutes = Router();
 const usersController = new UsersController();
 
-function userMiddleware(req, res, next) {
-    console.log("passou pelo middleware")
+usersRoutes.post("/", usersController.create)
 
-    next()
-}
-
-usersRoutes.post("/", userMiddleware, usersController.create)
-usersRoutes.put("/:id",userMiddleware, usersController.update)
+// O id do usuário já está sendo encorporado dentro das requisições
+usersRoutes.put("/",ensureAuthenticated, usersController.update)
 
 
 module.exports = usersRoutes;
