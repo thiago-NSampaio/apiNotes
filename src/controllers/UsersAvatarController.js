@@ -27,7 +27,7 @@ class UsersAvatarController {
         // Salvar a referência no banco de dados.
         await knex("users").update(user).where({ id: user_id });
         
-        res.json();
+        res.json({user});
     }
 }
 
