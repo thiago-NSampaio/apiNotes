@@ -96,9 +96,6 @@ class NotesController {
         tags: noteTags
       }
     })
-      
-
-
 
     return res.json({ notesWithTags });
   }
