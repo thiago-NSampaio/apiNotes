@@ -30,7 +30,7 @@ class UsersController {
         if (!user) {
             throw new AppError("Usuário não encontrado.")
         }
-        const checkEmailUpdate = await db.get("SELECT email FROM users WHERE email = (?)", [email])
+        const checkEmailUpdate = await db.get("SELECT * FROM users WHERE email = (?)", [email])
         
         if (checkEmailUpdate && checkEmailUpdate.id !== user.id) {
             throw new AppError("Este email já existe")
